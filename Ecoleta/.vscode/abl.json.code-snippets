@@ -1,0 +1,136 @@
+{
+	// Place your PROJETOS workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"LOG": {
+        "prefix": "log",
+        "description": "Log-manager WRITE MESSAGE",
+        "body": [
+            "log-manager:write-message(\"${1}\" + string(${2}),\"${3}@TOTVS-LOG\") no-error.",
+            "$0"
+        ]
+    },
+    "DEFPARAMETRO": {
+        "prefix": "DEFPARAMETRO",
+        "description": "define PARAMETER",
+        "body": [
+            "define input parameter ${1:varName} as ${2:dataType} no-undo.",
+            "$0"
+        ]
+    },
+    "DEFVARIABLE": {
+        "prefix": "DEFVARIABLE",
+        "description": "define VARIABLE",
+        "body": [
+            "define variable ${1:varName} as ${2:dataType} no-undo.",
+            "$0"
+        ]
+    },
+    "DEFTEMPTABLE": {
+        "prefix": "DEFTEMPTABLE",
+        "description": "Define TEMP-TABLE",
+        "body": [
+            "define temp-table ${1:nameTable} no-undo",
+            "field ${2:fieldName} as ${2:dataType}.",
+            "$0"
+        ]
+    },
+    "DEFBUFFER": {
+        "prefix": "DEFBUFFER",
+        "description": "define BUFFER",
+        "body": [
+            "define buffer ${1:bufferName} FOR ${2:tableLike}.",
+            "$0"
+        ]
+    },
+	"TEMPJSON": {
+        "prefix": "TJSON",
+        "description": "temp-table JSON",
+        "body": [
+            "define variable JSONTempTable as longchar no-undo.",
+            "JSONTempTable = \"\".",
+			"FOR EACH ${1:ttName}:",
+			"TEMP-TABLE ${1:ttName}:DEFAULT-BUFFER-HANDLE:SERIALIZE-ROW(\"JSON\", \"LONGCHAR\", JSONTempTable, TRUE) NO-ERROR.",
+			"LOG-MANAGER:WRITE-MESSAGE(substring(string(JSONTempTable),1,10000),\"JSONTT\") NO-ERROR.",
+			"END. ",
+            "$0"
+        ]
+    },
+    "CLIENTLOG": {
+        "prefix": "CLIENTLOG",
+        "description": "Clientlog Active",
+        "body": [
+			"LOG-MANAGER:LOGFILE-NAME = \"C:\\temp\\clientlog_layout.log\".",
+            "LOG-MANAGER:LOGGING-LEVEL = 4.",
+            "LOG-MANAGER:LOG-ENTRY-TYPES = \"4GLTrace,DB.Connects,FileID,4GLMessages\".",
+            "LOG-MANAGER:CLEAR-LOG().",
+            "$0"
+        ]
+    },
+    "FUNCTION": {
+        "prefix": "FUNCTION",
+        "description": "Define Function (TOTVS)",
+        "body": [
+			"function ${1:functionName} returns ${2:dataType} (input ${3:varName} as ${4:dataType}).",
+            "end function. ",
+            "$0"
+        ]
+    },
+    "FINDFIRST": {
+        "prefix": "FINDFIRST",
+        "description": "Find first (TOTVS)",
+        "body": [
+			"find first ${1:tableName} where ${2:query} no-lock no-error.",
+            "$0"
+        ]
+    },
+    "FOREACH": {
+        "prefix": "FOREACH",
+        "description": "For each (TOTVS)",
+        "body": [
+            "for each ${1:tableName} where ${2:query} no-lock:",
+            "$0",
+            "end.",
+            "$0"
+        ]
+    },
+    "IF": {
+        "prefix": "IF",
+        "description": "if (TOTVS)",
+        "body": [
+            "if ${1:logicalExpression}",
+            "then do:",
+            "$0",
+            "end.",
+            "$0"
+        ]
+    },
+    "IFELSE": {
+        "prefix": "IFELSE",
+        "description": "if else (TOTVS)",
+        "body": [
+            "if ${1:logicalExpression}",
+            "then do:",
+            "$0",
+            "end.",
+            "else do:",
+            "$0",
+            "end."
+        ]
+    }
+}
+
