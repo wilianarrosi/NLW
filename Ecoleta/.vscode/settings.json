@@ -1,4 +1,13 @@
 {
     "editor.detectIndentation": false,
     "files.autoGuessEncoding": true,
+    "files.associations": {
+        "*.html": "njk"
+    },
+    "emmet.includeLanguages": {
+        "njk": "html"
+    },
+    "vsicons.associations.files": [
+        { "icon": "nunjucks", "extensions": ["html"], "format": "svg" }
+    ],
 }
